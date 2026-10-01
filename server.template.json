@@ -6,7 +6,7 @@
     {
       "tag": "vless-tcp-reality",
       "listen": "0.0.0.0",
-      "port": "LISTEN_PORT_PLACEHOLDER",
+      "port": "REALITY_PORT_PLACEHOLDER",
       "protocol": "vless",
       "settings": {
         "clients": [{
@@ -19,8 +19,7 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "show": false,
-          "dest": "TARGET_PLACEHOLDER:443",
+          "dest": "SNI_PLACEHOLDER:443",
           "serverNames": ["SNI_PLACEHOLDER"],
           "privateKey": "PRIVATE_KEY_PLACEHOLDER",
           "shortIds": ["SHORT_ID_PLACEHOLDER"]
@@ -45,7 +44,13 @@
           "path": "/PATH_PLACEHOLDER"
         },
         "tlsSettings": {
-          "serverName": "SNI_PLACEHOLDER"
+          "serverName": "TLS_DOMAIN_PLACEHOLDER",
+          "certificates": [
+            {
+              "certificateFile": "/etc/simpweb/certs/fullchain.pem",
+              "keyFile": "/etc/simpweb/certs/private.key"
+            }
+          ]
         }
       }
     }
