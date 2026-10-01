@@ -4,33 +4,48 @@
   },
   "inbounds": [
     {
-      "tag": "vless-xhttp-reality",
+      "tag": "vless-tcp-reality",
       "listen": "0.0.0.0",
       "port": "LISTEN_PORT_PLACEHOLDER",
       "protocol": "vless",
       "settings": {
-        "clients": [
-          {
-            "id": "${UUID}",
-            "flow": "xtls-rprx-vision"
-          }
-        ],
-        "decryption": "${DECRYPTION}"
+        "clients": [{
+          "id": "UUID_PLACEHOLDER",
+          "flow": "xtls-rprx-vision"
+        }],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "TARGET_PLACEHOLDER:443",
+          "serverNames": ["SNI_PLACEHOLDER"],
+          "privateKey": "PRIVATE_KEY_PLACEHOLDER",
+          "shortIds": ["SHORT_ID_PLACEHOLDER"]
+        }
+      }
+    },
+    {
+      "tag": "vless-xhttp-tls",
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [{
+          "id": "UUID_PLACEHOLDER"
+        }],
+        "decryption": "none"
       },
       "streamSettings": {
         "network": "xhttp",
-        "security": "reality",
+        "security": "tls",
         "xhttpSettings": {
-          "mode": "auto",
-          "path": "/${PATH_STR}"
+          "path": "/PATH_PLACEHOLDER"
         },
-        "realitySettings": {
-          "target": "${SNI}:443",
-          "serverNames": [
-            "${SNI}"
-          ],
-          "privateKey": "${PRIVATE_KEY}",
-          "shortIds": ["${SHORT_ID}"]
+        "tlsSettings": {
+          "serverName": "SNI_PLACEHOLDER"
         }
       }
     }
@@ -39,10 +54,6 @@
     {
       "protocol": "freedom",
       "tag": "direct"
-    },
-    {
-      "protocol": "blackhole",
-      "tag": "block"
     }
   ]
 }
